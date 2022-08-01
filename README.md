@@ -8,4 +8,3 @@ The rules of the tic tac toe game are the following:
 * a player can take a field if not already taken
 * players take turns taking fields until the game is over
 * there are two player in the game (X and O)
-
