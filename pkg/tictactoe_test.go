@@ -9,12 +9,18 @@ import (
 )
 
 func TestGame(t *testing.T) {
+	game := pkg.NewGame()
+	game.Init()
+
 	t.Run(`Given a new game,
 	when it is initialized,
 	then the state changes to open`, func(t *testing.T) {
-		game := pkg.NewGame()
-		game.Init()
-
 		assert.Equal(t, "open", game.State())
+	})
+
+	t.Run(`Given a new game,
+	when it is initialized,
+	then all the cells in the board are empty`, func(t *testing.T) {
+		assert.Empty(t, game.Board())
 	})
 }
