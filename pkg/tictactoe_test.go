@@ -4,6 +4,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+
+	"github.com/lucianogarciaz/tic-tac-toe/pkg"
 )
 
 func TestGame(t *testing.T) {
