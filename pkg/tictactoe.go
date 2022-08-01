@@ -20,3 +20,7 @@ func (g Game) State() string {
 func (g Game) Board() Board {
 	return Board{}
 }
+
+func (g Game) CountPlayers() int {
+	return 0
+}
