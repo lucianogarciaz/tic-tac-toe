@@ -23,4 +23,10 @@ func TestGame(t *testing.T) {
 	then all the cells in the board are empty`, func(t *testing.T) {
 		assert.Empty(t, game.Board())
 	})
+
+	t.Run(`Given a new game,
+	when it is initialized,
+	then we have two players in the game`, func(t *testing.T) {
+		assert.Equal(t, 2, game.CountPlayers())
+	})
 }
