@@ -28,9 +28,9 @@ func (g Game) CountPlayers() int {
 }
 
 func (g Game) PlayerOne() string {
-	return ""
+	return "X"
 }
 
 func (g Game) PlayerTwo() string {
-	return ""
+	return "O"
 }
