@@ -29,4 +29,11 @@ func TestGame(t *testing.T) {
 	then we have two players in the game`, func(t *testing.T) {
 		assert.Equal(t, 2, game.CountPlayers())
 	})
+
+	t.Run(`Given a new game,
+	when it is initialized,
+	then we have two players X and O`, func(t *testing.T) {
+		assert.Equal(t, "X", game.PlayerOne())
+		assert.Equal(t, "O", game.PlayerTwo())
+	})
 }
