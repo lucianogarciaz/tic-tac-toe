@@ -3,6 +3,8 @@ package pkg
 type Game struct {
 }
 
+type Players [2]string
+
 type Board [3][3]bool
 
 func NewGame() Game {
@@ -22,5 +24,5 @@ func (g Game) Board() Board {
 }
 
 func (g Game) CountPlayers() int {
-	return 0
+	return len(Players{})
 }
