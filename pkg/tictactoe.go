@@ -26,3 +26,11 @@ func (g Game) Board() Board {
 func (g Game) CountPlayers() int {
 	return len(Players{})
 }
+
+func (g Game) PlayerOne() string {
+	return ""
+}
+
+func (g Game) PlayerTwo() string {
+	return ""
+}
