@@ -1,5 +1,10 @@
 package pkg
 
+const (
+	playerX = "X"
+	playerO = "O"
+)
+
 type Game struct {
 }
 
@@ -28,9 +33,9 @@ func (g Game) CountPlayers() int {
 }
 
 func (g Game) PlayerOne() string {
-	return "X"
+	return playerX
 }
 
 func (g Game) PlayerTwo() string {
-	return "O"
+	return playerO
 }
