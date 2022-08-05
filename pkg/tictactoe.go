@@ -29,6 +29,9 @@ func (g *Game) Init() {
 }
 
 func (g *Game) Take(player string, field Field) error {
+	if player == playerX {
+		return nil
+	}
 	return ErrNotPlayerTurn
 }
 
