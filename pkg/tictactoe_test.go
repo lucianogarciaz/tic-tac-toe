@@ -37,12 +37,19 @@ func TestGame(t *testing.T) {
 		assert.Equal(t, "O", game.PlayerTwo())
 	})
 
-	t.Run(`Given a player O,
+	t.Run(`Given a new game and a player O,
 	When taking a field,
 	Then it should return an ErrNotPlayerTurn error`, func(t *testing.T) {
 		expectedError := pkg.ErrNotPlayerTurn
 		field := pkg.Field{1, 2}
 		err := game.Take(game.PlayerTwo(), field)
 		assert.Equal(t, expectedError, err)
+	})
+
+	t.Run(`Given a new game and player X,
+	When taking a field,
+	Then it should return no error`, func(t *testing.T) {
+		field := pkg.Field{1, 2}
+		assert.NoError(t, game.Take(game.PlayerOne(), field))
 	})
 }
