@@ -36,4 +36,13 @@ func TestGame(t *testing.T) {
 		assert.Equal(t, "X", game.PlayerOne())
 		assert.Equal(t, "O", game.PlayerTwo())
 	})
+
+	t.Run(`Given a player O,
+	When taking a field,
+	Then it should return an ErrNotPlayerTurn error`, func(t *testing.T) {
+		expectedError := pkg.ErrNotPlayerTurn
+		field := pkg.Field{1, 2}
+		err := game.Take(game.PlayerTwo(), field)
+		assert.Equal(t, expectedError, err)
+	})
 }
