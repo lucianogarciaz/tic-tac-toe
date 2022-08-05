@@ -29,7 +29,7 @@ func (g *Game) Init() {
 }
 
 func (g *Game) Take(player string, field Field) error {
-	return nil
+	return ErrNotPlayerTurn
 }
 
 func (g Game) State() string {
