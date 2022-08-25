@@ -10,6 +10,7 @@ const (
 var (
 	ErrNotPlayerTurn     = errors.New("not player turn")
 	ErrFieldAlreadyTaken = errors.New("field already taken")
+	ErrOutOfBounds       = errors.New("field out of bounds")
 )
 
 type Field struct {
@@ -40,6 +41,10 @@ func (g *Game) Init() {
 }
 
 func (g *Game) Take(player string, field Field) error {
+	if field.X > 3 || field.Y > 3 {
+		return ErrOutOfBounds
+	}
+
 	if player == string(g.Turn) && g.board[field.X][field.Y] {
 		return ErrFieldAlreadyTaken
 	}
