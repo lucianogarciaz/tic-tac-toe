@@ -14,14 +14,20 @@ type Field struct {
 }
 
 type Game struct {
+	Turn Player
 }
 
-type Players [2]string
+type Turn string
+
+type Players [2]Player
+type Player string
 
 type Board [3][3]bool
 
 func NewGame() Game {
-	return Game{}
+	return Game{
+		Turn: playerX,
+	}
 }
 
 func (g *Game) Init() {
@@ -29,9 +35,12 @@ func (g *Game) Init() {
 }
 
 func (g *Game) Take(player string, field Field) error {
-	if player == playerX {
+	if player == string(g.Turn) {
+		g.Turn = playerO
+
 		return nil
 	}
+
 	return ErrNotPlayerTurn
 }
 

@@ -63,4 +63,16 @@ func TestGame(t *testing.T) {
 		assert.NoError(t, game.Take(game.PlayerOne(), field))
 		assert.NoError(t, game.Take(game.PlayerTwo(), field))
 	})
+
+	t.Run(`Given a new game
+		When player 0 plays
+		Then player X takes the next turn`, func(t *testing.T) {
+		game := pkg.NewGame()
+		game.Init()
+
+		field := pkg.Field{1, 2}
+		assert.NoError(t, game.Take(game.PlayerOne(), field))
+		assert.NoError(t, game.Take(game.PlayerTwo(), field))
+		assert.NoError(t, game.Take(game.PlayerOne(), field))
+	})
 }
