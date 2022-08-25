@@ -43,17 +43,18 @@ func (g *Game) Take(player string, field Field) error {
 		return ErrOutOfBounds
 	}
 
-	if player == string(g.Turn) && g.board[field.X][field.Y] {
+	if player != string(g.Turn) {
+		return ErrNotPlayerTurn
+	}
+
+	if g.board[field.X][field.Y] {
 		return ErrFieldAlreadyTaken
 	}
 
-	if player == string(g.Turn) {
-		g.Next()
-		g.board[field.X][field.Y] = true
-		return nil
-	}
-
-	return ErrNotPlayerTurn
+	g.Next()
+	g.board[field.X][field.Y] = true
+	
+	return nil
 }
 
 func (g *Game) Next() {
