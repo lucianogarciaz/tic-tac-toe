@@ -7,14 +7,18 @@ const (
 	playerO = "O"
 )
 
-var ErrNotPlayerTurn = errors.New("not player turn")
+var (
+	ErrNotPlayerTurn     = errors.New("not player turn")
+	ErrFieldAlreadyTaken = errors.New("field already taken")
+)
 
 type Field struct {
 	X, Y int
 }
 
 type Game struct {
-	Turn Player
+	Turn  Player
+	board Board
 }
 
 type Turn string
@@ -26,7 +30,8 @@ type Board [3][3]bool
 
 func NewGame() Game {
 	return Game{
-		Turn: playerX,
+		Turn:  playerX,
+		board: Board{},
 	}
 }
 
@@ -35,9 +40,13 @@ func (g *Game) Init() {
 }
 
 func (g *Game) Take(player string, field Field) error {
+	if player == string(g.Turn) && g.board[field.X][field.Y] {
+		return ErrFieldAlreadyTaken
+	}
+
 	if player == string(g.Turn) {
 		g.Next()
-
+		g.board[field.X][field.Y] = true
 		return nil
 	}
 

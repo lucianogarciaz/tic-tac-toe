@@ -84,4 +84,13 @@ func TestGame(t *testing.T) {
 		assert.NoError(t, game.Take(game.PlayerOne(), pkg.Field{0, 0}))
 		assert.ErrorIs(t, game.Take(game.PlayerTwo(), pkg.Field{0, 0}), pkg.ErrFieldAlreadyTaken)
 	})
+
+	t.Run(`Given a new game,
+		When a player tries to take an out-of-bounds field,
+		Then an ErrOutOfBounds error should be returned`, func(t *testing.T) {
+		game := pkg.NewGame()
+		game.Init()
+
+		assert.ErrorIs(t, game.Take(game.PlayerOne(), pkg.Field{100, 100}), pkg.ErrOutOfBounds)
+	})
 }
