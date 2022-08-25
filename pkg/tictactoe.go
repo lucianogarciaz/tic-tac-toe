@@ -36,12 +36,22 @@ func (g *Game) Init() {
 
 func (g *Game) Take(player string, field Field) error {
 	if player == string(g.Turn) {
-		g.Turn = playerO
+		g.Next()
 
 		return nil
 	}
 
 	return ErrNotPlayerTurn
+}
+
+func (g *Game) Next() {
+	if g.Turn == playerX {
+		g.Turn = playerO
+
+		return
+	}
+
+	g.Turn = playerX
 }
 
 func (g Game) State() string {
