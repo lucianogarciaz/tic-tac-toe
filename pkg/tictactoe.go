@@ -38,10 +38,6 @@ func NewGame() Game {
 	}
 }
 
-func (g *Game) Init() {
-
-}
-
 func (g *Game) Take(player string, field Field) error {
 	if field.X >= boardRows || field.Y >= boardColumns {
 		return ErrOutOfBounds
