@@ -3,8 +3,10 @@ package pkg
 import "errors"
 
 const (
-	playerX = "X"
-	playerO = "O"
+	playerX      = "X"
+	playerO      = "O"
+	boardRows    = 3
+	boardColumns = 3
 )
 
 var (
@@ -27,7 +29,7 @@ type Turn string
 type Players [2]Player
 type Player string
 
-type Board [3][3]bool
+type Board [boardRows][boardColumns]bool
 
 func NewGame() Game {
 	return Game{
@@ -41,7 +43,7 @@ func (g *Game) Init() {
 }
 
 func (g *Game) Take(player string, field Field) error {
-	if field.X > 3 || field.Y > 3 {
+	if field.X >= boardRows || field.Y >= boardColumns {
 		return ErrOutOfBounds
 	}
 
