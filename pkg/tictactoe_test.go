@@ -32,8 +32,8 @@ func TestGame(t *testing.T) {
 	t.Run(`Given a new game,
 	when it is initialized,
 	then we have two players X and O`, func(t *testing.T) {
-		assert.Equal(t, "X", game.PlayerOne())
-		assert.Equal(t, "O", game.PlayerTwo())
+		assert.Equal(t, pkg.Player("X"), game.PlayerOne())
+		assert.Equal(t, pkg.Player("O"), game.PlayerTwo())
 	})
 
 	t.Run(`Given a new game and a player O,

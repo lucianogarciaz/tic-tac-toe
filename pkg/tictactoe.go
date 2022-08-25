@@ -3,10 +3,10 @@ package pkg
 import "errors"
 
 const (
-	playerX      = "X"
-	playerO      = "O"
-	boardRows    = 3
-	boardColumns = 3
+	playerX      Player = "X"
+	playerO      Player = "O"
+	boardRows           = 3
+	boardColumns        = 3
 )
 
 var (
@@ -38,12 +38,12 @@ func NewGame() Game {
 	}
 }
 
-func (g *Game) Take(player string, field Field) error {
+func (g *Game) Take(player Player, field Field) error {
 	if field.X >= boardRows || field.Y >= boardColumns {
 		return ErrOutOfBounds
 	}
 
-	if player != string(g.Turn) {
+	if player != g.Turn {
 		return ErrNotPlayerTurn
 	}
 
@@ -53,7 +53,7 @@ func (g *Game) Take(player string, field Field) error {
 
 	g.Next()
 	g.board[field.X][field.Y] = true
-	
+
 	return nil
 }
 
@@ -79,10 +79,10 @@ func (g Game) CountPlayers() int {
 	return len(Players{})
 }
 
-func (g Game) PlayerOne() string {
+func (g Game) PlayerOne() Player {
 	return playerX
 }
 
-func (g Game) PlayerTwo() string {
+func (g Game) PlayerTwo() Player {
 	return playerO
 }
