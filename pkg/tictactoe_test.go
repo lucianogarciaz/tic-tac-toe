@@ -10,7 +10,6 @@ import (
 
 func TestGame(t *testing.T) {
 	game := pkg.NewGame()
-	game.Init()
 
 	t.Run(`Given a new game,
 	when it is initialized,
@@ -57,7 +56,6 @@ func TestGame(t *testing.T) {
 		When player X takes a field and player O takes a field
 		Then it should return no error`, func(t *testing.T) {
 		game := pkg.NewGame()
-		game.Init()
 
 		assert.NoError(t, game.Take(game.PlayerOne(), pkg.Field{0, 0}))
 		assert.NoError(t, game.Take(game.PlayerTwo(), pkg.Field{0, 1}))
@@ -67,7 +65,6 @@ func TestGame(t *testing.T) {
 		When player 0 plays
 		Then player X takes the next turn`, func(t *testing.T) {
 		game := pkg.NewGame()
-		game.Init()
 
 		assert.NoError(t, game.Take(game.PlayerOne(), pkg.Field{0, 0}))
 		assert.NoError(t, game.Take(game.PlayerTwo(), pkg.Field{0, 1}))
@@ -79,7 +76,6 @@ func TestGame(t *testing.T) {
 		and player O a field already taken
 		Then an ErrFieldAlreadyTaken error should be returned`, func(t *testing.T) {
 		game := pkg.NewGame()
-		game.Init()
 
 		assert.NoError(t, game.Take(game.PlayerOne(), pkg.Field{0, 0}))
 		assert.ErrorIs(t, game.Take(game.PlayerTwo(), pkg.Field{0, 0}), pkg.ErrFieldAlreadyTaken)
@@ -89,7 +85,6 @@ func TestGame(t *testing.T) {
 		When a player tries to take an out-of-bounds field,
 		Then an ErrOutOfBounds error should be returned`, func(t *testing.T) {
 		game := pkg.NewGame()
-		game.Init()
 
 		assert.ErrorIs(t, game.Take(game.PlayerOne(), pkg.Field{100, 100}), pkg.ErrOutOfBounds)
 	})
