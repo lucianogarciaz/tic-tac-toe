@@ -73,4 +73,15 @@ func TestGame(t *testing.T) {
 		assert.NoError(t, game.Take(game.PlayerTwo(), pkg.Field{0, 1}))
 		assert.NoError(t, game.Take(game.PlayerOne(), pkg.Field{0, 2}))
 	})
+
+	t.Run(`Given a game that was started
+		When player X takes a field
+		and player O a field already taken
+		Then an ErrFieldAlreadyTaken error should be returned`, func(t *testing.T) {
+		game := pkg.NewGame()
+		game.Init()
+
+		assert.NoError(t, game.Take(game.PlayerOne(), pkg.Field{0, 0}))
+		assert.ErrorIs(t, game.Take(game.PlayerTwo(), pkg.Field{0, 0}), pkg.ErrFieldAlreadyTaken)
+	})
 }
